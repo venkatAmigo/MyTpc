@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.vvitmdc.chats">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="My TPC"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".BranchWiseStatActivity"></activity>
+        <activity android:name=".StatistcsActivity" />
+        <activity android:name=".UploadSelectionActivity" />
+        <activity android:name=".AddStudentActivity" />
+        <activity
+            android:name=".CommentScrollActivity"
+            android:label="@string/title_activity_comment_scroll"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DashBoardActivity"
+            android:label="@string/title_activity_dash_board"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CommentsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ForumActivity" />
+        <activity android:name=".ForumPostActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".ExpertsListActivity" />
+        <activity android:name=".UserListActivity" />
+        <activity android:name=".StudentDashboard" />
+        <activity android:name=".TPODashboard" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

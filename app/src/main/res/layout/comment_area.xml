@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="horizontal"
+    >
+
+    <EditText
+        android:id="@+id/commentArea"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Write your comment..."
+        android:inputType="textPersonName"
+        android:textColor="#000000" />
+
+    <ImageView
+        android:id="@+id/commentButton"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_weight="4"
+        android:padding="4dp"
+        app:srcCompat="@drawable/paper_plane" />
+</LinearLayout>
