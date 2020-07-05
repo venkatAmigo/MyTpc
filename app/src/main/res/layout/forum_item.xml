@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:clipToPadding="false"
-    android:elevation="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="10dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,7 +27,8 @@
                 android:gravity="center"
                 android:text="JOB"
                 android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/lato_black"/>
 
         </LinearLayout>
 
@@ -44,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:text="Company Name"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_regular"/>
 
             <TextView
                 android:id="@+id/cname"
@@ -53,7 +53,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/lora_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:text="Job  Role"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_regular"/>
 
             <TextView
                 android:id="@+id/role_tv"
@@ -76,7 +78,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/lora_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:text="Interview Date"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_regular"/>
 
             <TextView
                 android:id="@+id/date_tv"
@@ -100,7 +104,8 @@
                 android:layout_weight="1"
                 android:textColor="@color/black"
                 android:gravity="center_horizontal"
-                android:text="" />
+                android:text=""
+                android:fontFamily="@font/lora_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -113,6 +118,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Eligibility Criteria"
+                android:fontFamily="@font/montserrat_regular"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold" />
 
@@ -123,7 +129,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/lora_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -137,7 +144,9 @@
                 android:layout_height="wrap_content"
                 android:text="Package"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_regular"
+                />
 
             <TextView
                 android:id="@+id/pack_tv"
@@ -146,7 +155,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/lora_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -160,7 +170,8 @@
                 android:layout_height="wrap_content"
                 android:text="Venue"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_regular"/>
 
             <TextView
                 android:id="@+id/venue_tv"
@@ -186,8 +197,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:gravity="end"
+                android:layout_margin="10dp"
                 android:text="Comments/Register"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_medium"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

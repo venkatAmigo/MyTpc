@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+   xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgclr_platinum"
+    android:background="@drawable/bg_round_blue"
     tools:context=".StudentDashboard">
 
     <LinearLayout
@@ -18,52 +19,67 @@
             android:layout_height="262dp" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/dash_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardBackgroundColor="#E6E4E4"
-            app:cardCornerRadius="50dp">
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#FFFFFF"
+            app:cardElevation="8dp"
+
+            >
+            <androidx.core.widget.NestedScrollView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:background="#FFFFFF"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:gravity="center_horizontal"
+                    >
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/forum_card"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="15dp"
-                        app:cardPreventCornerOverlap="false"
-                        app:strokeColor="#0000ff"
-                        app:strokeWidth="2dp">
+                        android:layout_width="97dp"
+                        android:layout_height="118dp"
+                        android:layout_margin="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                       >
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/dash"
                             android:orientation="vertical">
 
                             <ImageView
+                                android:layout_gravity="center"
                                 android:id="@+id/agrilandtest_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="120dp"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:contentDescription="TODO"
                                 app:srcCompat="@drawable/viewjob" />
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="View Jobs"
                                 android:textColor="#000000"
-                                android:textStyle="bold" />
+                                 />
 
                         </LinearLayout>
 
@@ -71,24 +87,23 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/chat_card"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="15dp"
-                        app:strokeColor="#0000ff"
-                        app:strokeWidth="2dp">
-
+                        android:layout_width="97dp"
+                        android:layout_height="118dp"
+                        android:layout_margin="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/dash"
                             android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/agrifriend_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="120dp"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_gravity="center"
                                 android:contentDescription="TODO"
                                 app:srcCompat="@drawable/ask_fac" />
 
@@ -96,9 +111,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Ask Placement faculty"
+                                android:text="Ask Faculty"
                                 android:textColor="#000000"
-                                android:textStyle="bold" />
+                                />
                         </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
@@ -109,37 +124,156 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                   >
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/student_stat_card"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_marginEnd="20dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="8dp"
-                        app:cardPreventCornerOverlap="false"
-                        app:cardUseCompatPadding="false"
-                        app:strokeColor="#0000ff"
-                        app:strokeWidth="2dp"
-                        android:layout_weight="1">
+                        android:id="@+id/branch_stat_card"
+                        android:layout_width="97dp"
+                        android:layout_height="118dp"
+                        android:layout_margin="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="3dp"
+
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/dash">
+
+                            <ImageView
+                                android:id="@+id/branchwise_stat"
+                                android:layout_width="70dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="TODO"
+                                app:srcCompat="@drawable/stat2" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Branch wise Statistics"
+                                android:textColor="#000000"
+                                />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/compas"
+                        android:layout_width="97dp"
+                        android:layout_height="118dp"
+                        android:layout_margin="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="3dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardUseCompatPadding="false"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/dash">
+
+                            <ImageView
+                                android:layout_width="70dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="TODO"
+                                app:srcCompat="@drawable/pie"
+                                tools:ignore="VectorDrawableCompat" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Company Statistics"
+                                android:textColor="#000000"
+                                />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    >
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/Refe"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="97dp"
+                        android:layout_height="118dp"
+                        android:layout_margin="15dp"
+                        app:cardCornerRadius="20dp"
+                        card_view:cardElevation="3dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardUseCompatPadding="false"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/dash">
+
+                            <ImageView
+                                android:id="@+id/im"
+                                android:layout_width="70dp"
+                                android:layout_height="60dp"
+                                android:contentDescription="TODO"
+                                android:layout_gravity="center"
+                                app:srcCompat="@drawable/book_stack" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Reference Materials"
+                                android:textColor="#000000"
+                                />
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/student_stat_card"
+                        android:layout_width="97dp"
+                        android:layout_height="118dp"
+                        android:layout_margin="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                        app:cardPreventCornerOverlap="false"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/dash">
 
                             <ImageView
                                 android:id="@+id/weather_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="120dp"
+                                android:layout_width="70dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
                                 android:contentDescription="TODO"
-                                app:srcCompat="@drawable/stat2" />
+                                app:srcCompat="@drawable/info" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -147,51 +281,18 @@
                                 android:gravity="center"
                                 android:text="Latest drive details"
                                 android:textColor="#000000"
-                                android:textStyle="bold" />
+                                />
 
                         </LinearLayout>
-
                     </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/branch_stat_card"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_marginStart="20dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="8dp"
-                        app:cardPreventCornerOverlap="false"
-                        app:cardUseCompatPadding="false"
-                        app:strokeColor="#0000ff"
-                        app:strokeWidth="2dp"
-                        android:layout_weight="1">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/branchwise_stat"
-                                android:layout_width="wrap_content"
-                                android:layout_height="120dp"
-                                android:contentDescription="TODO"
-                                app:srcCompat="@drawable/stat2" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="Branch Wise Statistics"
-                                android:textColor="#000000"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
                 </LinearLayout>
+
+
+
             </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
         </androidx.cardview.widget.CardView>
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

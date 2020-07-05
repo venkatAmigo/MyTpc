@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme.NoActionBar"
+    android:background="@drawable/android_bg"
     tools:context=".MainActivity">
-
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -19,46 +19,72 @@
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="50sp"
         android:textStyle="bold"
-        android:typeface="serif" />
+        android:typeface="serif" />-->
+
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:hint="Enter Username"
+        android:textColorHint="#FFFFFF"
         app:hintEnabled="true"
-        android:textColorHint="#031579"
-        >
+        app:boxStrokeColor="#fff"
+        app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.420">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
+            android:drawableStart="@drawable/ic_profile_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:maxLength="25"
+            android:textColor="#fff"
+            android:drawablePadding="10dp"
             android:maxLines="1"
             android:singleLine="true"
-            android:maxLength="25"
-            android:imeOptions="actionNext"/>
+            />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:textColorHint="#031579"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:hint="Enter Password"
-        app:hintEnabled="true">
+        android:textColorHint="#FEFEFF"
+        app:hintEnabled="true"
+        app:boxStrokeColor="#fff"
+        app:boxStrokeWidth="2dp"
+        app:passwordToggleEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.04">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
+            android:drawableStart="@drawable/ic_password_lock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:maxLength="10"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
-            android:imeOptions="actionDone"/>
+            android:maxLength="10"
+            android:drawablePadding="10dp"
+            android:maxLines="1"
+            android:textColor="#fff"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -66,15 +92,18 @@
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_gravity="bottom|center_vertical|center_horizontal|center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/bgclr_platinum"
+        android:background="@drawable/bg_rounded"
         android:gravity="center"
+        android:onClick="signin"
         android:text="Sign in"
         android:textAllCaps="false"
-        android:onClick="signin"
         android:textColor="#fff"
         android:textSize="16sp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.676" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

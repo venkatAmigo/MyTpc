@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="15dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="10dp"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,8 +22,9 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Company Name"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textColor="#8F27A1"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_light"/>
 
             <TextView
                 android:id="@+id/stat_cname"
@@ -33,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/lora_regular"
                 android:gravity="center_horizontal" />
         </LinearLayout>
 
@@ -46,8 +46,9 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Package"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textColor="#8F27A1"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_light"/>
 
             <TextView
                 android:id="@+id/stat_pack_tv"
@@ -55,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/lora_regular"
                 android:gravity="center_horizontal" />
         </LinearLayout>
 
@@ -68,8 +70,9 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="No Of Selections"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textColor="#8F27A1"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_light"/>
 
             <TextView
                 android:id="@+id/stat_sel_tv"
@@ -77,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/lora_regular"
                 android:gravity="center_horizontal"
                 android:text="" />
         </LinearLayout>

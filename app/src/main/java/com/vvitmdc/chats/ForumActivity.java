@@ -1,10 +1,13 @@
 package com.vvitmdc.chats;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +34,7 @@ public class ForumActivity extends AppCompatActivity {
     FloatingActionButton createPost;
     private String location="";
     SweetAlertDialog sl;
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +49,9 @@ public class ForumActivity extends AppCompatActivity {
         postdata=new ArrayList<String>();
         ids=new ArrayList<String>();*/
 
-      if(UserData.isStudent)
+      if(UserData.isStudent) {
           createPost.hide();
+      }
         location=getIntent().getStringExtra("loc");
        // UserData.userLocation=location;
         createPost.setOnClickListener(new View.OnClickListener() {
@@ -65,14 +70,19 @@ public class ForumActivity extends AppCompatActivity {
     private void getAllPosts()
     {
         String url = "https://chat-82696.firebaseio.com/Posts.json";
-        sl.changeAlertType(SweetAlertDialog.PROGRESS_TYPE);
+        /*sl.changeAlertType(SweetAlertDialog.PROGRESS_TYPE);
         sl.setContentText("Loading..");
         sl.setCancelable(false);
-        sl.show();
+        sl.setContentView(R.layout.choose_dialog);
+        sl.show();*/
+        dialog=new Dialog(this);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.choose_dialog);
+        dialog.show();
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
-
+                dialog.dismiss();
                 try {
                     JSONObject j=new JSONObject(s);
                     ArrayList<String> ids= new ArrayList<>();
@@ -153,6 +163,19 @@ public class ForumActivity extends AppCompatActivity {
         },new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                dialog.dismiss();
+                AlertDialog.Builder alertDialog=new AlertDialog.Builder(ForumActivity.this);
+                alertDialog.setMessage("Please Check Internet Connection..")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog1=alertDialog.create();
+                alertDialog1.setTitle("Information");
+                alertDialog1.show();
                 System.out.println("" + volleyError);
             }
         });

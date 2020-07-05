@@ -2,14 +2,15 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/comment_card"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
     app:cardCornerRadius="10dp"
-    app:cardElevation="8dp"
+    app:cardElevation="2dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
+        android:id="@+id/comment_linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -22,7 +23,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="VEnkat"
-            android:textColor="#000000"
+            android:textColor="#041575"
             android:textStyle="bold" />
 
         <TextView

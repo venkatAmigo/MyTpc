@@ -13,6 +13,7 @@ package com.vvitmdc.chats;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
@@ -32,7 +33,7 @@ public class CommentsActivity extends AppCompatActivity {
 
     private DatabaseReference reference;
     private EditText commentData;
-    private ImageView send;
+    private Button send;
     private ImageView collapseIv;
     private String comments;
     private String pid;
@@ -129,24 +130,6 @@ public class CommentsActivity extends AppCompatActivity {
         reference.child(pid).push().setValue(comment);
     }
     private void addMessageBox(String userid,String message){
-        TextView textView = new TextView(CommentsActivity.this);
-        textView.setText(message);
-        textView.setPadding(10,0,50,0);
-        TextView textView2 = new TextView(CommentsActivity.this);
-        textView.setText(userid);
-        textView.setPadding(10,0,50,0);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(10, 0, 0, 10);
-        textView2.setTextSize(16);
-        textView2.setTextColor(getResources().getColor(R.color.black));
-        textView.setTextSize(18);
-        lp.gravity= Gravity.LEFT;
-        textView.setGravity(Gravity.CENTER);
-        //textView.setBackgroundResource(R.drawable.bubble);
-        textView2.setLayoutParams(lp);
-        textView.setLayoutParams(lp);
-        CardView cardView=new CardView(CommentsActivity.this);
-        cardView.addView(textView2);
         LayoutInflater vi=(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v=vi.inflate(R.layout.comment_item,null);
         TextView textViewx=v.findViewById(R.id.userid);
@@ -154,14 +137,6 @@ public class CommentsActivity extends AppCompatActivity {
         TextView textViewy=v.findViewById(R.id.comment_text);
         textViewy.setText(message);
         textViewx.setText(userid);
-        //cardView.addView(v);
-        cardView.setCardElevation(10);
-        cardView.setMinimumWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-        cardView.setMinimumHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        CardView.LayoutParams clp = new CardView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        clp.setMargins(5,30,5,30);
-        cardView.setLayoutParams(clp);
-        cardView.setRadius(10);
         layout.addView(v);
         scrollView.fullScroll(View.FOCUS_DOWN);
 

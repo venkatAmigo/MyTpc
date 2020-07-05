@@ -34,7 +34,7 @@ public class ExpertsAdapter extends RecyclerView.Adapter<ExpertsAdapter.ExpertHo
 
     @Override
     public void onBindViewHolder(@NonNull ExpertsAdapter.ExpertHolder holder, final int position) {
-        holder.item.setText("TPO");
+        holder.item.setText(expertsList.get(position));
         location=position;
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override

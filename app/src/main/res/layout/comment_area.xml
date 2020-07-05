@@ -1,27 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom"
-    android:orientation="horizontal"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:gravity="bottom"
+android:layout_margin="10dp"
+android:orientation="horizontal"
+android:weightSum="3"
     >
-
-    <EditText
-        android:id="@+id/commentArea"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="Write your comment..."
-        android:inputType="textPersonName"
-        android:textColor="#000000" />
-
-    <ImageView
-        android:id="@+id/commentButton"
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:boxStrokeWidth="1dp"
+    app:boxStrokeColor="@color/colorAccent"
+    app:boxBackgroundMode="outline"
+    android:layout_weight="2"
+    android:layout_margin="5dp"
+    app:boxCornerRadiusBottomEnd="5dp"
+    app:boxCornerRadiusBottomStart="5dp"
+    app:boxCornerRadiusTopEnd="5dp"
+    app:boxCornerRadiusTopStart="5dp">
+    <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_weight="4"
-        android:padding="4dp"
-        app:srcCompat="@drawable/paper_plane" />
+        android:layout_marginEnd="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Message"
+        android:id="@+id/commentArea"
+        android:inputType="textPersonName"/>
+</com.google.android.material.textfield.TextInputLayout>
+<Button
+    android:id="@+id/commentButton"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:text="Send"
+    android:layout_weight="1"
+    android:textColor="#fff"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_rounded"/>
 </LinearLayout>

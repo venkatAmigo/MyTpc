@@ -23,6 +23,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseError;
@@ -31,10 +38,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,12 +56,14 @@ public class ChatActivity extends AppCompatActivity {
     EditText messageArea;
     ScrollView scrollView;
     DatabaseReference reference1, reference2;
+    String KEY="AAAApXLLB1Y:APA91bH73e1KgEUOibtykwFz-dF5kHv8gLVA45cUx3Ed9ZBgWlCrfa2tzyKb9gzpmgNiEasagF82uGvmDoF3qKbZ-9DpF37YV18xR6dYbR_CUc_0JVQHFQEjP3UpNBWyRCA8Q3T9Ud_6";
     public static final int PICK_IMAGE_REQUEST=1;
     Uri mImageUri;
     StorageReference mStorageRef;
     DatabaseReference mDataRef;
     static Boolean isImage=false;
     String downUrl=" ";
+    RequestQueue rq;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +73,8 @@ public class ChatActivity extends AppCompatActivity {
         uploadButton=findViewById(R.id.imageUpload);
         messageArea = findViewById(R.id.messageArea);
         scrollView = findViewById(R.id.scrollView);
+        rq= Volley.newRequestQueue(this);
+        FirebaseMessaging.getInstance().subscribeToTopic(UserData.username);
         mStorageRef= FirebaseStorage.getInstance().getReference("uploads");
         mDataRef=FirebaseDatabase.getInstance().getReference("uploads");
         String url="https://chat-82696.firebaseio.com/messages/" + UserData.username + "_" + UserData.chatWith;
@@ -72,6 +87,7 @@ public class ChatActivity extends AppCompatActivity {
                 String messageText = messageArea.getText().toString();
                 messageArea.setText("");
                 if(!messageText.equals("")){
+                    sendNotification(messageText);
                     Map<String, String> map = new HashMap<String, String>();
                     map.put("message", messageText);
                     map.put("user", UserData.username);
@@ -124,12 +140,12 @@ public class ChatActivity extends AppCompatActivity {
                 //Toast.makeText(ChatActivity.this, "Event Triggered "+userName, Toast.LENGTH_SHORT).show();
 
                 if(userName.equals(UserData.username)){
-                    addMessageBox("You:-\n" + message, 1);
+                    addMessageBox("You:-" , message, 1);
                     if(!image.equals(" "))
                         addImageBox(image,1);
                 }
                 else{
-                    addMessageBox(UserData.chatWith + ":-\n" + message, 2);
+                    addMessageBox(UserData.chatWith , message, 2);
                     if(!image.equals(" "))
                         addImageBox(image,2);
                 }
@@ -155,6 +171,48 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void sendNotification(String message) {
+        JSONObject main=new JSONObject();
+        try {
+            main.put("to","/topics/"+UserData.chatWith);
+            JSONObject notifi=new JSONObject();
+            notifi.put("title","Message From "+UserData.chatWith);
+            notifi.put("body",message);
+            JSONObject extra=new JSONObject();
+            extra.put("sender",UserData.username);
+            extra.put("receiver",UserData.chatWith);
+            main.put("notification",notifi);
+            main.put("data",extra);
+
+            String url="https://fcm.googleapis.com/fcm/send";
+            JsonObjectRequest request=new JsonObjectRequest(Request.Method.POST, url,
+                    main, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Toast.makeText(ChatActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(ChatActivity.this,"error"+error, Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                   Map<String,String> header=new HashMap<>();
+                   header.put("content-type","application/json");
+                   header.put("authorization","key="+KEY);
+                    return header;
+                }
+            };
+            rq.add(request);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
@@ -199,28 +257,37 @@ public class ChatActivity extends AppCompatActivity {
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
 
-    public void addMessageBox(String message, int type){
-        TextView textView = new TextView(ChatActivity.this);
-        textView.setText(message);
+    public void addMessageBox(String userid,String message, int type){
+        LayoutInflater vi=(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v=vi.inflate(R.layout.comment_item,null);
+        TextView textViewx=v.findViewById(R.id.userid);
+        textViewx.setText(userid);
+        TextView textViewy=v.findViewById(R.id.comment_text);
+        textViewy.setText(message);
+        textViewx.setText(userid);
+        /*TextView textView = new TextView(ChatActivity.this);
+        textView.setText(message);*/
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 0, 0, 10);
-        textView.setTextSize(18);
-        textView.setLayoutParams(lp);
-
+        //textView.setTextSize(18);
+        textViewx.setLayoutParams(lp);
         if(type == 1) {
             lp.gravity= Gravity.RIGHT;
-            textView.setGravity(Gravity.CENTER);
-            textView.setBackgroundResource(R.drawable.blue_button_background);
-            textView.setLayoutParams(lp);
+            //textViewx.setGravity(Gravity.CENTER);
+            //textViewx.setBackgroundResource(R.drawable.blue_button_background);
+            //textViewx.setLayoutParams(lp);
+            v.setLayoutParams(lp);
 
         }
         else{
             lp.gravity= Gravity.LEFT;
-            textView.setGravity(Gravity.CENTER);
-            textView.setBackgroundResource(R.drawable.blue_button_background);
-            textView.setLayoutParams(lp);
+            //textViewx.setGravity(Gravity.CENTER);
+           // textViewx.setBackgroundResource(R.drawable.blue_button_background);
+           // textViewx.setLayoutParams(lp);
+            v.setLayoutParams(lp);
         }
-        layout.addView(textView);
+       // layout.addView(textView);
+        layout.addView(v);
         scrollView.fullScroll(View.FOCUS_DOWN);
 
     }

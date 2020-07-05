@@ -5,7 +5,11 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -19,16 +23,23 @@ public class StudentDashboard extends AppCompatActivity
         implements View.OnClickListener ,
         BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
     SliderLayout sl;
-    CardView fCard,cCard,sCard,bSCard;
+    CardView fCard,cCard,sCard,bSCard,rCard,cosCard,dashCard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_dashboard);
         setTitle("Home");
+        UserData.isStudent=true;
         fCard=findViewById(R.id.forum_card);
         cCard=findViewById(R.id.chat_card);
         sCard=findViewById(R.id.student_stat_card);
         bSCard=findViewById(R.id.branch_stat_card);
+        rCard=findViewById(R.id.Refe);
+        cosCard=findViewById(R.id.compas);
+        dashCard=findViewById(R.id.dash_card);
+        Animation a= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoom_out);
+        a.setDuration(1000);
+        dashCard.startAnimation(a);
         fCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +68,20 @@ public class StudentDashboard extends AppCompatActivity
                 startActivity(i);
             }
         });
-
+        rCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(StudentDashboard.this,Materials.class);
+                startActivity(i);
+            }
+        });
+        cosCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(StudentDashboard.this,Company.class);
+                startActivity(i);
+            }
+        });
         sl=findViewById(R.id.slider_layout);
         HashMap<String,Integer> h=new HashMap<>();
         h.put("img1",R.drawable.tpo_one);
@@ -112,5 +136,35 @@ public class StudentDashboard extends AppCompatActivity
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.profile)
+        {
+            Intent intent=new Intent(this,ProfileActivity.class);
+            startActivity(intent);
+
+        }
+        else
+        {
+            SavePreference.setLogin(getApplicationContext(),false,"student");
+            Intent intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i=new Intent(this,StudentDashboard.class);
+        startActivity(i);
     }
 }

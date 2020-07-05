@@ -14,6 +14,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:textColorHint="#031579"
+        android:theme="@style/Login"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="Enter Student Name"
         app:hintEnabled="true">
@@ -128,8 +129,9 @@
         android:id="@+id/submit_btton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bgclr_platinum"
+        android:background="@drawable/bg_rounded"
         android:text="Submit"
+        android:textColor="#fff"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
 </LinearLayout>
